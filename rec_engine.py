@@ -28,3 +28,9 @@ class RecEngine:
         for img_path in images_path:
             img = cv2.imread(img_path)
             rgb_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+            # Get the filename only from the initial file path.
+            basename = os.path.basename(img_path)
+            (filename, ext) = os.path.splitext(basename)
+            # Get encoding
+            img_encoding = face_recognition.face_encodings(rgb_img)[0]
