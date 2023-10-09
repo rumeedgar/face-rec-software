@@ -39,3 +39,13 @@ class RecEngine:
             self.known_face_encodings.append(img_encoding)
             self.known_face_names.append(filename)
         print("Encoding images loaded")
+
+    def detect_known_faces(self, frame):
+        small_frame = cv2.resize(
+            frame, (0, 0), fx=self.frame_resizing, fy=self.frame_resizing)
+        # Find all the faces and face encodings in the current frame of video
+        # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
+        rgb_small_frame = cv2.cvtColor(small_frame, cv2.COLOR_BGR2RGB)
+        face_locations = face_recognition.face_locations(rgb_small_frame)
+        face_encodings = face_recognition.face_encodings(
+            rgb_small_frame, face_locations)    
