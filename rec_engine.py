@@ -34,3 +34,8 @@ class RecEngine:
             (filename, ext) = os.path.splitext(basename)
             # Get encoding
             img_encoding = face_recognition.face_encodings(rgb_img)[0]
+
+            # Store file name and file encoding
+            self.known_face_encodings.append(img_encoding)
+            self.known_face_names.append(filename)
+        print("Encoding images loaded")
